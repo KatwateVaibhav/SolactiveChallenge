@@ -66,6 +66,18 @@ class TicksControllerTest {
 		ResponseEntity<Void> response = restTemplate.postForEntity("/ticks", tick, Void.class);
 		assertThat(response.getStatusCodeValue(), equalTo(500));
 	}
+	
+	@Test
+	void addNegativePrice() {
+		Tick tick = new Tick();
+		tick.setInstrument("TCS");
+		tick.setPrice(-105);
+		tick.setTimestamp(System.currentTimeMillis());
+
+		ResponseEntity<Void> response = restTemplate.postForEntity("/ticks", tick, Void.class);
+		assertThat(response.getStatusCodeValue(), equalTo(204));
+	}
+
 
 	@Test
 	void addTickAndGetInstrument() {

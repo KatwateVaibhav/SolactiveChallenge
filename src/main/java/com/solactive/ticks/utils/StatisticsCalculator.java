@@ -15,11 +15,11 @@ public class StatisticsCalculator {
 	
 	
 	public synchronized void addTick(InstrumentTicks instrumentTicks) {
-		final long minTimeSlot = System.currentTimeMillis() -  TicksConstant.SECONDS_TRANSACTION_BECOME_OLD;
+		final long minTimeSlot = System.currentTimeMillis() -  TicksConstant.DEFAULT_SLIDING_WINDOW_MS;
 				
 		 if ((instrumentTicks.getTimestamp() > minTimeSlot)) {
 			// OutDated ticks will be removed
-			 while (!priorityQueue.isEmpty()  && priorityQueue.peek().getTimestamp() < System.currentTimeMillis() - TicksConstant.SECONDS_TRANSACTION_BECOME_OLD)
+			 while (!priorityQueue.isEmpty()  && priorityQueue.peek().getTimestamp() < System.currentTimeMillis() - TicksConstant.DEFAULT_SLIDING_WINDOW_MS)
 				 priorityQueue.poll(); //returns elements in sorted order
 			 
 			// Ticks with valid Timeframe will be added
@@ -57,7 +57,7 @@ public class StatisticsCalculator {
 	}
 	//All expired ticks will be cleaned from the object and recalculation is performed.
 	public synchronized void cleanExpiredTicks() {
-		final long minTime = System.currentTimeMillis() - TicksConstant.SECONDS_TRANSACTION_BECOME_OLD;
+		final long minTime = System.currentTimeMillis() - TicksConstant.DEFAULT_SLIDING_WINDOW_MS;
 		InstrumentTicks expiredTickObj = priorityQueue.stream().filter(node -> node.getTimestamp() < minTime)
 				.findFirst().orElse(null);
 		if (expiredTickObj != null) {
