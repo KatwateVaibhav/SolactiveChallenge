@@ -56,4 +56,4 @@ curl --request GET http://localhost:9020/statistics
 
 # And, whether you liked the challenge or not 
 
-*Yes, This test was challeging and exciting as It helped me to think again about my multi-threading and performance.
+* Yes, This test was challeging and exciting as It helped me to think again about my multi-threading and performance.
