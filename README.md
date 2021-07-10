@@ -33,14 +33,14 @@ curl --request GET http://localhost:9020/statistics
 ## Exceptions thrown
 * Exception handling is done, using a framework. @ExceptionHandler deals with  all the exceptions thrown from application.
 
-#Handled Scenarios 
-*TransactionTimestampException.
-*InvalidInstrumentException.
-*InvalidTickException.
+# Handled Scenarios 
+* TransactionTimestampException.
+* InvalidInstrumentException.
+* InvalidTickException.
 
 * Unit tests have been used for all the layers.
 
-#Assumptions
+# Assumptions
 
 * Price of an instrument cannot be negative.
 * Future timestamps wont be received in the application.
